@@ -1,0 +1,379 @@
+@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
+
+:root {
+    --surface: #fbfcff;
+    --on-surface: #191c1e;
+    --surface-container-lowest: #ffffff;
+    --surface-container-low: #f0f4f8;
+    --surface-container: #eef1f6;
+    --surface-container-high: #e2e7ee;
+    --primary: #006492;
+    --primary-container: #c9e6ff;
+    --on-primary-container: #001e2f;
+    --tertiary: #004b5d;
+    --outline-variant: #c2c7cf;
+    --text-secondary: #64748b;
+    --border-subtle: #e2e8f0;
+
+    --ease-monolith: cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+[data-theme="dark"] {
+    --surface: #0f1114;
+    --on-surface: #f1f3f5;
+    --surface-container-lowest: #181b1e;
+    --surface-container-low: #181b1e;
+    --surface-container: #1e2227;
+    --surface-container-high: #282d33;
+    --primary: #4da8e0;
+    --primary-container: #00344f;
+    --on-primary-container: #c9e6ff;
+    --tertiary: #4da8e0;
+    --outline-variant: #3d4349;
+    --text-secondary: #94a3b8;
+    --border-subtle: #282d33;
+}
+
+[x-cloak] { display: none !important; }
+
+body {
+    font-family: 'Inter', sans-serif;
+    background-color: var(--surface);
+    color: var(--on-surface);
+    transition: background-color 0.4s var(--ease-monolith), color 0.4s var(--ease-monolith);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+/* Mobile touch optimizations */
+@media (max-width: 768px) {
+    .input-editorial {
+        font-size: 16px !important;
+    }
+    
+    input[type="text"],
+    input[type="password"] {
+        font-size: 16px !important;
+        transform: translateZ(0);
+    }
+    
+    button, .btn-primary, .btn-ghost, [role="button"] {
+        min-height: 48px;
+        min-width: 48px;
+    }
+    
+    .vault-card-elevated {
+        padding: 1.5rem !important;
+    }
+}
+
+/* Reduced motion */
+@media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+    }
+}
+
+/* Theme Toggle */
+.theme-toggle {
+    position: fixed;
+    top: 1.5rem;
+    right: 1.5rem;
+    z-index: 50;
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    background: var(--surface-container-low);
+    border: 1px solid var(--border-subtle);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: background 0.3s var(--ease-monolith), box-shadow 0.3s var(--ease-monolith);
+    color: var(--on-surface);
+    overflow: hidden;
+}
+
+.theme-toggle:hover {
+    background: var(--surface-container);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.12);
+}
+
+.theme-toggle:active {
+    transform: scale(0.96);
+}
+
+.theme-toggle svg {
+    position: absolute;
+    transition: all 0.4s var(--ease-monolith);
+}
+
+.theme-toggle .sun-icon {
+    opacity: 1;
+    transform: rotate(0deg) scale(1);
+}
+
+.theme-toggle .moon-icon {
+    opacity: 0;
+    transform: rotate(-90deg) scale(0.5);
+}
+
+[data-theme="dark"] .theme-toggle .sun-icon {
+    opacity: 0;
+    transform: rotate(90deg) scale(0.5);
+}
+
+[data-theme="dark"] .theme-toggle .moon-icon {
+    opacity: 1;
+    transform: rotate(0deg) scale(1);
+}
+
+/* Staggered Reveal - The Mist */
+@keyframes monolithReveal {
+    from {
+        opacity: 0;
+        transform: translateY(12px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.editorial-heading {
+    font-size: clamp(2.5rem, 8vw, 5rem);
+    font-weight: 800;
+    line-height: 0.9;
+    letter-spacing: -0.04em;
+    animation: monolithReveal 0.7s var(--ease-monolith) backwards;
+}
+
+.vault-surface {
+    background-color: var(--surface-container-low);
+    border-radius: 2rem;
+    transition: background-color 0.3s var(--ease-monolith), box-shadow 0.3s var(--ease-monolith);
+    animation: monolithReveal 0.5s var(--ease-monolith) backwards;
+}
+
+.vault-surface:nth-of-type(1) { animation-delay: 0.05s; }
+.vault-surface:nth-of-type(2) { animation-delay: 0.1s; }
+.vault-surface:nth-of-type(3) { animation-delay: 0.15s; }
+.vault-surface:nth-of-type(4) { animation-delay: 0.2s; }
+.vault-surface:nth-of-type(5) { animation-delay: 0.25s; }
+.vault-surface:nth-of-type(6) { animation-delay: 0.3s; }
+.vault-surface:nth-of-type(7) { animation-delay: 0.35s; }
+.vault-surface:nth-of-type(8) { animation-delay: 0.4s; }
+.vault-surface:nth-of-type(9) { animation-delay: 0.45s; }
+
+.vault-surface:hover {
+    background-color: var(--surface-container);
+    box-shadow: 0 24px 48px -12px rgba(0, 0, 0, 0.1);
+}
+
+/* The Monolith & Mist - Elevated Vault Card */
+.vault-card-elevated {
+    background-color: var(--surface-container-lowest);
+    border-radius: 1.5rem;
+    backdrop-filter: blur(24px);
+    -webkit-backdrop-filter: blur(24px);
+    box-shadow: 0 40px 80px -8px rgba(25, 28, 30, 0.05);
+    animation: monolithReveal 0.5s var(--ease-monolith) backwards;
+    transition: background-color 0.4s var(--ease-monolith), box-shadow 0.6s var(--ease-monolith);
+}
+
+.vault-card-elevated:nth-of-type(1) { animation-delay: 0.05s; }
+.vault-card-elevated:nth-of-type(2) { animation-delay: 0.1s; }
+.vault-card-elevated:nth-of-type(3) { animation-delay: 0.15s; }
+.vault-card-elevated:nth-of-type(4) { animation-delay: 0.2s; }
+.vault-card-elevated:nth-of-type(5) { animation-delay: 0.25s; }
+.vault-card-elevated:nth-of-type(6) { animation-delay: 0.3s; }
+.vault-card-elevated:nth-of-type(7) { animation-delay: 0.35s; }
+.vault-card-elevated:nth-of-type(8) { animation-delay: 0.4s; }
+.vault-card-elevated:nth-of-type(9) { animation-delay: 0.45s; }
+
+.vault-card-elevated:hover {
+    background-color: var(--surface-container-high);
+    box-shadow: 0 48px 96px -16px rgba(25, 28, 30, 0.12);
+}
+
+[data-theme="dark"] .vault-card-elevated {
+    box-shadow: 0 40px 80px -8px rgba(0, 0, 0, 0.25);
+}
+
+[data-theme="dark"] .vault-card-elevated:hover {
+    box-shadow: 0 48px 96px -16px rgba(0, 0, 0, 0.35);
+}
+
+/* Buttons - Monolith weight */
+.btn-primary {
+    background: linear-gradient(135deg, var(--primary), #007bb3);
+    background-size: 200% 200%;
+    color: white;
+    border-radius: 9999px;
+    padding: 0.75rem 2rem;
+    font-weight: 600;
+    box-shadow: 0 4px 14px 0 rgba(0, 100, 146, 0.25);
+    transition: background-position 0.4s var(--ease-monolith), box-shadow 0.3s var(--ease-monolith);
+}
+
+.btn-primary:hover {
+    background-position: 100% 100%;
+    box-shadow: 0 8px 24px 0 rgba(0, 100, 146, 0.35);
+}
+
+.btn-primary:active {
+    box-shadow: 0 2px 8px 0 rgba(0, 100, 146, 0.25);
+}
+
+.btn-ghost {
+    background: transparent;
+    color: var(--primary);
+    border: 2px solid var(--primary-container);
+    border-radius: 9999px;
+    padding: 0.75rem 2rem;
+    font-weight: 600;
+    transition: background-color 0.3s var(--ease-monolith), border-color 0.3s var(--ease-monolith);
+}
+
+.btn-ghost:hover {
+    background-color: var(--primary-container);
+    border-color: var(--primary);
+}
+
+/* Inputs */
+.input-editorial {
+    background-color: var(--surface-container-lowest);
+    border: 1px solid var(--border-subtle);
+    border-radius: 1rem;
+    padding: 1rem 1.5rem;
+    width: 100%;
+    outline: none;
+    color: var(--on-surface);
+    transition: box-shadow 0.3s var(--ease-monolith), border-color 0.3s var(--ease-monolith);
+}
+
+.input-editorial:focus {
+    box-shadow: 0 0 0 3px var(--primary-container);
+    border-color: var(--primary);
+}
+
+.input-editorial::placeholder {
+    color: var(--text-secondary);
+}
+
+/* Credential Rows - The Mist reveal + lingering exit */
+.credential-row {
+    background-color: transparent;
+    padding: 1.5rem;
+    border-radius: 1.5rem;
+    margin-bottom: 0.5rem;
+    transition: background-color 0.4s var(--ease-monolith), box-shadow 0.4s var(--ease-monolith);
+    animation: monolithReveal 0.4s var(--ease-monolith) backwards;
+}
+
+.credential-row:nth-of-type(1) { animation-delay: 0.05s; }
+.credential-row:nth-of-type(2) { animation-delay: 0.1s; }
+.credential-row:nth-of-type(3) { animation-delay: 0.15s; }
+.credential-row:nth-of-type(4) { animation-delay: 0.2s; }
+.credential-row:nth-of-type(5) { animation-delay: 0.25s; }
+.credential-row:nth-of-type(6) { animation-delay: 0.3s; }
+.credential-row:nth-of-type(7) { animation-delay: 0.35s; }
+.credential-row:nth-of-type(8) { animation-delay: 0.4s; }
+
+.credential-row:hover {
+    background-color: var(--surface-container-high);
+    box-shadow: 0 8px 32px -8px rgba(0, 0, 0, 0.08);
+}
+
+.credential-row {
+    transition: background-color 0.4s var(--ease-monolith), box-shadow 0.4s var(--ease-monolith);
+}
+
+/* Vault Card */
+.vault-card {
+    background-color: var(--surface-container-lowest);
+    border: 1px solid var(--border-subtle);
+    border-radius: 2rem;
+    box-shadow: 0 20px 40px -10px rgba(0,0,0,0.05);
+    transition: box-shadow 0.3s var(--ease-monolith), background-color 0.3s var(--ease-monolith);
+}
+
+[data-theme="dark"] .vault-card {
+    box-shadow: 0 20px 40px -10px rgba(0,0,0,0.3);
+}
+
+.vault-card:hover {
+    box-shadow: 0 28px 56px -14px rgba(0,0,0,0.12);
+}
+
+/* Toast - Slide and fade, no bounce */
+.toast {
+    background: var(--surface-container-lowest);
+    border: 1px solid var(--border-subtle);
+    color: var(--on-surface);
+    box-shadow: 0 16px 48px -12px rgba(0,0,0,0.15);
+    transition: opacity 0.3s var(--ease-monolith), transform 0.3s var(--ease-monolith);
+}
+
+/* Password reveal button */
+.password-reveal-btn {
+    transition: background-color 0.3s var(--ease-monolith);
+}
+
+/* Range slider */
+input[type="range"] {
+    -webkit-appearance: none;
+    appearance: none;
+    height: 4px;
+    background: var(--border-subtle);
+    border-radius: 2px;
+    outline: none;
+    accent-color: var(--primary);
+}
+
+input[type="range"]::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 14px;
+    height: 14px;
+    border-radius: 50%;
+    background: var(--primary);
+    cursor: pointer;
+    transition: transform 0.2s var(--ease-monolith);
+}
+
+input[type="range"]::-webkit-slider-thumb:hover {
+    transform: scale(1.2);
+}
+
+input[type="range"]::-moz-range-thumb {
+    width: 14px;
+    height: 14px;
+    border-radius: 50%;
+    background: var(--primary);
+    cursor: pointer;
+    border: none;
+}
+
+.password-reveal-btn:hover {
+    background-color: var(--surface-container);
+}
+
+/* Utility classes */
+.text-secondary { color: var(--text-secondary); }
+.border-subtle { border-color: var(--border-subtle); }
+.surface-container { background-color: var(--surface-container); }
+.bg-surface-container-lowest { background-color: var(--surface-container-lowest); }
+.bg-primary\/5 { background-color: var(--primary-container); }
+
+.font-manrope { font-family: 'Manrope', sans-serif; }
+.font-inter { font-family: 'Inter', sans-serif; }
+
+/* Clipboard feedback */
+.copy-feedback {
+    transition: opacity 0.2s var(--ease-monolith);
+}
